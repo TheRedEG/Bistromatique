@@ -1,2 +1,0 @@
-# bistromatique
-Projet bistromatique

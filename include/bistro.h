@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:04:11 2015 denuit mathieu
-** Last update Mon Oct 26 16:46:50 2015 denuit mathieu
+** Last update Tue Oct 27 14:36:27 2015 denuit mathieu
 */
 
 #include <stdlib.h>
@@ -19,7 +19,6 @@
 #define OP_MOD 6
 
 #define SYNTAXE_ERROR_MSG "syntax error"
-
-#define READ_BUFFER_SIZE (1024)
+#define ERROR_MSG "Error"
 
 char	*eval_expr(char *base, char *ops, unsigned long size);

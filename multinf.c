@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Tue Oct 27 15:11:30 2015 Nicolas Gautherin
+** Last update Tue Oct 27 15:22:46 2015 Nicolas Gautherin
 */
 
 #include <stdlib.h>
@@ -30,7 +30,7 @@ void	newtmp(char *str, t_add_data *data, char *s1, int index)
   str[j] = '\0';
 }
 
-char		*multinf(char *s1, char *s2, t_add_data *data, int index)
+char		*do_multinf(char *s1, char *s2, t_add_data *data, int index)
 {
   char		*tmp;
   char		*result;
@@ -58,12 +58,12 @@ char		*multinf(char *s1, char *s2, t_add_data *data, int index)
   return (result);
 }
 
-char		*pff(char *s1, char *s2)
+char		*multinf(char *s1, char *s2)
 {
   t_add_data	data;
   int		index;
 
   index = 0;
   fill_add_data(&s1, &s2, &data);
-  return (multinf(s1, s2, &data, index));
+  return (do_multinf(s1, s2, &data, index));
 }

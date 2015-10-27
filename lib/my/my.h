@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Sun Oct 11 12:32:51 2015 denuit mathieu
-** Last update Mon Oct 12 11:22:45 2015 denuit mathieu
+** Last update Thu Oct 22 14:01:47 2015 denuit mathieu
 */
 
 #ifndef LIBMY_H_
@@ -22,5 +22,6 @@ int	my_show_wordtab(char **tab);
 char	**my_str_to_wordtab(char *str);
 int	my_nboverflow(char *str, int len, int sign);
 char	*my_strdup(char *str);
+int	my_atoi_base(char *str, char *base);
 
 #endif

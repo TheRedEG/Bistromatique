@@ -1,11 +1,11 @@
 /*
-** multinf.c for mult in /home/gauthe_n/my_works/Bistromatique/multiplication
+** multinf.c for mult in /home/gauthe_n/rendu/bistromatique
 ** 
 ** Made by Nicolas Gautherin
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Tue Oct 27 14:45:15 2015 Nicolas Gautherin
+** Last update Tue Oct 27 15:11:30 2015 Nicolas Gautherin
 */
 
 #include <stdlib.h>

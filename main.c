@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Mon Oct 26 16:48:00 2015 denuit mathieu
+** Last update Tue Oct 27 21:21:42 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -14,23 +14,16 @@
 
 int	check_base(char *base)
 {
-
+  /* Vérifier que la base à 2 chars minimum, 255 maximum, et aucun caractère
+  identique (erreur -> return 0) */
+  return (1);
 }
 
-int	check_ops(char *ops)
+int	check_ops(char *ops, char *base)
 {
-
-}
-
-char	*get_expr(unsigned int size)
-{
-  char	buff[READ_BUFFER_SIZE + 1];
-  int	len;
-
-  while ((len = read(0, buff, READ_BUFFER_SIZE)) > 0)
-  {
-    buff[len] = 0;    
-  }
+  /* Vérifier que les opérateurs ont 5 chars précisément, et aucun caractère
+  identique, et aucun caractère présent dans la base (erreur -> return 0) */
+  return (1);
 }
 
 void	show_usage(char *argv0)
@@ -40,9 +33,9 @@ void	show_usage(char *argv0)
   my_putstr(" base ops\"()+-*/%\" exp_len\n");
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-  unsigned long	size;
+  int	size;
 
   if (argc != 4)
   {
@@ -54,7 +47,7 @@ int		main(int argc, char **argv)
     my_putstr("Base incorrect.\n");
     return (1);
   }
-  if (!check_ops(argv[2]))
+  if (!check_ops(argv[2], argv[1]))
   {
     my_putstr("Operators incorrect.\n");
     return (1);

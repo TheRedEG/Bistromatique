@@ -5,7 +5,7 @@
 ## Login   <denuit_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:26:08 2015 denuit mathieu
-## Last update Tue Oct 13 23:34:46 2015 denuit mathieu
+## Last update Wed Oct 28 01:14:06 2015 denuit mathieu
 ##
 
 CC	= gcc
@@ -26,7 +26,8 @@ SRCS	= my_getnbr_base.c \
 	  my_strncmp.c \
 	  my_str_to_wordtab.c \
 	  my_nboverflow.c \
-	  my_strdup.c
+	  my_strdup.c \
+	  my_itoa_base.c
 
 OBJS	= $(SRCS:.c=.o)
 

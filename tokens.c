@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Tue Oct 27 14:30:41 2015 denuit mathieu
-** Last update Tue Oct 27 14:35:55 2015 denuit mathieu
+** Last update Tue Oct 27 21:17:11 2015 denuit mathieu
 */
 
 #include "parser.h"
@@ -19,8 +19,8 @@ t_tokens	*new_token_after(t_tokens *last)
   if (!node)
     return (0);
   node->type = -1;
-  node->value = 0;
-  node->next = 0;
+  node->len = 0;
+  node->data = 0;
   if (last)
     last->next = node;
   return (node);

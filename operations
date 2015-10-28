@@ -1,0 +1,34 @@
+infnb_add(t_infnb left, t_infnb right)
+	        left négatif right positif	-> infnb_sub_biggest(right, left)
+	        left positif right négatif	-> infnb_sub_biggest(left, right)
+	        left positif right positif	-> infnb_add_p(left, right)
+	        left négatif right négatif	-> infnb_negate(infnb_add_p(left, right))
+
+infnb_sub(t_infnb left, t_infnb right)
+	        left positif right positif	-> infnb_sub_biggest(left, right)
+	        left positif right négatif	-> infnb_add_p(left, right)
+	        left négatif right positif	-> infnb_negate(infnb_add_p(left, right))
+	        left négatif right négatif	-> infnb_sub_biggest(right, left)
+
+infnb_sub_biggest(t_infnb left, t_infnb right)
+	        left > right			-> infnb_sub_p(left, right)
+	        left == right			-> infnb_zero()
+	        left < right			-> infnb_negate(infnb_sub_p(right, left))
+
+infnb_mul(t_infnb left, t_infnb right)
+		left négatif right positif	-> infnb_negate(infnb_mul_p(left, right))
+		left positif right négatif	-> infnb_negate(infnb_mul_p(left, right))
+		left positif right positif	-> infnb_mul_p(left, right)
+		left négatif right négatif	-> infnb_mul_p(left, right)
+infnb_div(t_infnb left, t_infnb right)
+                left négatif right positif      -> infnb_negate(infnb_div_p(left, right))
+        	left positif right négatif      -> infnb_negate(infnb_div_p(left, right))
+                left positif right positif      -> infnb_div_p(left, right)
+                left négatif right négatif      -> infnb_div_p(left, right)
+
+
+infnb_add_p : addition infinie entre deux nombres positifs
+infnb_sub_p : soustraction infinie entre deux nombres positifs (celui de gauche est toujours supérieur ou égal à celui de droite)
+infnb_mul_p : multiplication infinie entre deux nombres positifs
+infnb_div_p : division infinie entre deux nombres positifs (celui de droite est toujours supérieur à 0)
+infnb_mod : modulo infini entre deux nombres positifs ou négatifs (celui de droite est toujours différent de 0)

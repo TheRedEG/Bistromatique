@@ -1,4 +1,3 @@
-
 /*
 ** multinf.c for multinf in /home/gauthe_n/rendu/bistromatique
 ** 
@@ -6,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Wed Oct 28 12:16:08 2015 Nicolas Gautherin
+** Last update Wed Oct 28 12:17:55 2015 Nicolas Gautherin
 */
 
 #include <stdlib.h>

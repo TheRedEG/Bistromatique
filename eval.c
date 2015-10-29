@@ -5,106 +5,75 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Wed Oct 21 14:16:34 2015 denuit mathieu
-** Last update Wed Oct 28 13:20:51 2015 denuit mathieu
+** Last update Fri Oct 30 00:28:40 2015 denuit mathieu
 */
 
 #include "my.h"
 #include "eval.h"
 #include "infnb.h"
+#include "bistro.h"
 
-void eval_error(char *str)
+void	eval_copy_token_in_nb(int is_neg, t_token *token, t_infnb *nb_out)
 {
-  my_putstr("Eval error: ");
-  my_putstr(str);
-  my_putchar('\n');
-  exit(2);
+  nb_out->allocated = 0;
+  nb_out->data = (char*) token->data;
+  nb_out->len = token->len;
+  nb_out->is_neg = is_neg;
+  nb_out->offset = 0;
 }
 
-void		eval_expr(t_tokens *root, t_infnb *nb_out)
+int	eval_error_free(int error, t_infnb *nb)
 {
-  e_expression(&root, nb_out, 0);
+  infnb_free(nb);
+  return (error);
 }
 
-void		e_expression(t_tokens **node, t_infnb *nb_out, int r_par)
+int	eval_read_buffer(int size, char **buf_out)
 {
-  t_infnb	right;
-  int		type;
+  int	len;
+  int	total_len;
 
-  e_factor(node, nb_out);
-  type = (*node)->type;
-  while (type == TOK_ADD || type == TOK_SUB)
+  *buf_out = malloc(sizeof(char) * size);
+  if (!*buf_out)
+    return (E_ERR_MALLOC);
+  total_len = 0;
+  while ((len = read(0, *buf_out + total_len, size)) > 0)
   {
-    *node = (*node)->next;
-    e_factor(node, &right);
-    do_expression_op(nb_out, type, &right);
-    infnb_free(&right);
-    type = (*node)->type;
+    total_len += len;
+    if (total_len > size)
+    {
+      (*buf_out)[size] = 0;
+      break;
+    }
   }
-  if ((r_par && type != TOK_R_PAREN) || (!r_par && type != -1))
-  {
-    if (r_par && type == -1)
-      eval_error("expression missing ')'");
-    else
-      eval_error("expression can't continue with %data");
-  }
+  if (total_len < size)
+    return (E_ERR_READ);
+  return (E_NO_ERR);
 }
 
-void		e_factor(t_tokens **node, t_infnb *nb_out)
+int		eval_expr(char *base, char *ops, int size)
 {
-  t_infnb	right;
-  int		type;
+  t_eval_data	data;
+  char		*in_buf;
+  int		err;
+  t_infnb	nb_out;
 
-  e_number(node, nb_out);
-  type = (*node)->type;
-  while (type == TOK_MUL || type == TOK_DIV || type == TOK_MOD)
+  data.base = base;
+  data.base_len = my_strlen(data.base);
+  data.operators = ops;
+  if ((err = eval_read_buffer(size, &in_buf)) != E_NO_ERR)
   {
-    *node = (*node)->next;
-    e_number(node, &right);
-    do_factor_op(nb_out, type, &right);
-    infnb_free(&right);
-    type = (*node)->type;
+    free(in_buf);
+    return (err);
   }
-}
-
-int		e_number_neg(t_tokens **node)
-{
-  int		sign;
-  int		type;
-
-  sign = 1;
-  type = (*node)->type;
-  while (type == TOK_ADD || type == TOK_SUB)
+  if ((err = token_next(&data)) != E_NO_ERR)
   {
-    if (type == TOK_SUB)
-      sign *= -1;
-    *node = (*node)->next;
-    type = (*node)->type;
+    free(in_buf);
+    return (err);
   }
-  return ((sign < 0) ? 1 : 0);
-}
-
-void		e_number(t_tokens **node, t_infnb *nb_out)
-{
-  int		neg;
-
-  neg = e_number_neg(node);
-  if ((*node)->type == TOK_NUMBER)
-  {
-    nb_out->allocated = 0;
-    nb_out->data = (char*) (*node)->data;
-    nb_out->len = (*node)->len;
-    nb_out->neg = neg;
-  }
-  else if ((*node)->type == TOK_L_PAREN)
-  {
-    *node = (*node)->next;
-    e_expression(node, nb_out, 1);
-    if (neg && nb_out->neg)
-      nb_out->neg = 0;
-    else if (neg && !nb_out->neg)
-      nb_out->neg = 1;
-  }
-  else
-    eval_error("expected number or '('");
-  *node = (*node)->next;
+  if ((err = e_expression(&data, &nb_out, 0)) == E_NO_ERR)
+    infnb_print(&data, &nb_out);
+  infnb_free(&nb_out);
+  free(in_buf);
+  return (err);
 }

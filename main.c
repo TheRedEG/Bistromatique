@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Tue Oct 27 21:21:42 2015 denuit mathieu
+** Last update Thu Oct 29 21:41:42 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -14,7 +14,7 @@
 
 int	check_base(char *base)
 {
-  /* Vérifier que la base à 2 chars minimum, 255 maximum, et aucun caractère
+  /* Vérifier que la base à 2 chars minimum, 250 maximum, et aucun caractère
   identique (erreur -> return 0) */
   return (1);
 }

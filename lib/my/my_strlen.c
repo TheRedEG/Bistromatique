@@ -5,10 +5,10 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Thu Oct  1 09:58:33 2015 mathieu denuit
-** Last update Thu Oct  1 10:14:04 2015 mathieu denuit
+** Last update Fri Oct 30 00:36:16 2015 denuit mathieu
 */
 
-int	my_strlen(char *str)
+int	my_strlen(const char *str)
 {
   int	len;
 

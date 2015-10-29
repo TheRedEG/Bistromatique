@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:04:11 2015 denuit mathieu
-** Last update Wed Oct 28 01:13:27 2015 denuit mathieu
+** Last update Fri Oct 30 00:31:42 2015 denuit mathieu
 */
 
 #include <stdlib.h>
@@ -21,4 +21,13 @@
 #define SYNTAXE_ERROR_MSG "syntax error"
 #define ERROR_MSG "Error"
 
-char	*eval_expr(char *base, char *ops, unsigned long size);
+#define E_NO_ERR 0
+#define E_ERR_SYNTAX 1
+#define E_ERR_MALLOC 2
+#define E_ERR_DIV_BY_ZERO 2
+#define E_ERR_MOD_BY_ZERO 3
+#define E_ERR_READ 4
+#define E_ERR_INVALID_CHAR 5
+
+int	eval_expr(char *base, char *ops, int size);
+int	read(int fd, char *buf, int len);

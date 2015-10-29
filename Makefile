@@ -5,7 +5,7 @@
 ## Login   <denuit_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:26:08 2015 denuit mathieu
-## Last update Wed Oct 28 00:54:32 2015 denuit mathieu
+## Last update Fri Oct 30 00:11:15 2015 denuit mathieu
 ##
 
 CC	= gcc
@@ -20,12 +20,13 @@ LDFLAGS	= -Llib -lmy
 NAME	= calc
 
 SRCS	= main.c \
-	  parser.c \
+	  token.c \
 	  str_to_ulong.c \
-	  tokens.c \
 	  infnb.c \
 	  eval.c \
-	  evaluate.c
+	  eval_rules.c \
+	  infnb_ops.c \
+	  infnb_p.c
 
 OBJS	= $(SRCS:.c=.o)
 

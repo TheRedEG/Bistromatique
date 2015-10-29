@@ -5,12 +5,11 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Thu Oct 29 15:54:25 2015 Thomas Girolet
+** Last update Thu Oct 29 16:22:41 2015 Thomas Girolet
 */
 
+#include "bistro.h"
 #include "infnb.h"
-#include <stdlib.h>
-#include "my.h"
 #include "addinf.h"
 
 int	decimal_at(char *s, int index, int len)
@@ -27,7 +26,7 @@ char	do_addinf_carry(t_infnb *result, int *s1c, int *s2c, int *carry)
   
   res = decimal_at(left->data, *s1c, left->len) + *carry;
   res += decimal_at(right->data, *s2c, right->len) + *carry;
-  *carry = res >= /*10*/ ? 1 : 0; //modifier 10 par len de base
+  *carry = res >= g_base_len ? 1 : 0; 
   if (*carry)
     res -= 10;
   res += '0';

@@ -5,22 +5,12 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Wed Oct 28 15:35:04 2015 Thomas Girolet
+** Last update Thu Oct 29 16:22:41 2015 Thomas Girolet
 */
 
-
-#include <stdlib.h>
-#include "my.h"
+#include "bistro.h"
+#include "infnb.h"
 #include "addinf.h"
-
-void	allocated(t_infnb *left, t_infnb *result)
-{
-  char	*tmp;
-  
-  result->len = left->len + 1;
-  if (( tmp = malloc(result->len)) == NULL)
-    return (NULL);
-}
 
 int	decimal_at(char *s, int index, int len)
 {
@@ -30,13 +20,13 @@ int	decimal_at(char *s, int index, int len)
     return (s[index] - '0');
 }
 
-char	do_addinf_carry(t_infnb *left, t_infnb *right, t_infnb *result)
+char	do_addinf_carry(t_infnb *result, int *s1c, int *s2c, int *carry)
 {
   char	res;
   
   res = decimal_at(left->data, *s1c, left->len) + *carry;
   res += decimal_at(right->data, *s2c, right->len) + *carry;
-  *carry = res >= 10 ? 1 : 0;
+  *carry = res >= g_base_len ? 1 : 0; 
   if (*carry)
     res -= 10;
   res += '0';
@@ -45,7 +35,7 @@ char	do_addinf_carry(t_infnb *left, t_infnb *right, t_infnb *result)
   return (res);
 }
 
-int	do_addinf(t_infnb *left, t_infnb *right, t_infnb *result)
+int	infnb_add_p(t_infnb *result, t_infnb *left, t_infnb *right)
 {
   int	s1;
   int	s2;
@@ -56,14 +46,7 @@ int	do_addinf(t_infnb *left, t_infnb *right, t_infnb *result)
   carry = 0;
   while(s1 >= 0)
     {
-      result->data[] = do_addinf_carry(  ,&s1_c, &s2_c, &carry);
+      result->data[] = do_addinf_carry(result ,&s1, &s2, &carry);
     }
-  if (carry)
-    {
-      result->data[res_c] = '1';
-      return (res_c);
-    }
-  return (res_c + 1);
 }
 
-char	*addinf(

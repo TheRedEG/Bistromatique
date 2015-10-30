@@ -5,83 +5,82 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Wed Oct 28 12:17:55 2015 Nicolas Gautherin
+** Last update Fri Oct 30 16:02:47 2015 Nicolas Gautherin
 */
 
-#include <stdlib.h>
-#include "my.h"
-#include "addinf.h"
+#include "infnb.h"
+#include "bistro.h"
 
-void	newtmp(char *str, t_add_data *data, char *s1, int index)
+void	newtmp(t_eval_data *d, t_infnb *tmp, t_infnb *left, int rank)//chande
 {
-  int	j;
+  int	index;
 
-  j = 0;
-  while (j < data->len1)
+  index = tmp->len;
+  while (rank != 0)
     {
-      str[j] = s1[j];
-      j = j + 1;
+      tmp->data[index] = d->base[0]; //base (= base d'entrée) non definie pour le moment
+      index = index - 1;
+      rank = rank - 1;
     }
-  while (j <data->len2 - index + data->len1 - 1)
+  rank = left->len - 1;
+  while (rank >= left->offset)
     {
-      str[j] = '0';
-      j = j + 1;
-    }
-  str[j] = '\0';
-}
-
-char		*do_multinf(char *s1, char *s2, t_add_data *data, int index)
-{
-  char		*tmp;
-  char		*result;
-
-  if ((result = malloc(data->len1 + data->len2 + 2)) == NULL)
-    return (NULL);
-  if ((tmp = malloc(data->len1 + data->len2 + 2)) == NULL)
-    return (NULL);
-  result = result + 1;
-  while (index < data->len2)
-    {
-      newtmp(tmp, data, s1, index); 
-      while (s2[index] != '0')
-	{
-	  result = addinf(result, tmp);
-	  s2[index] = s2[index] - 1;
-	}
+      tmp->data[index] = left->data[rank];
+      rank = rank - 1;
       index = index + 1;
     }
-  if (data->isneg1 != data->isneg2)
+}
+
+t_infnb		*do_multinf(t_eval_data *d, t_infnb *result,
+			     t_infnb *left, t_infnb *right)
+{
+  t_infnb	*tmp;
+  int		index;
+  int		index2;
+
+  infnb_new(&tmp, (left->len - left->offset) + (right->len - right->offset));
+  index = right->len;
+  while (index > right->offset)
     {
-      result = result - 1;
-      result[0] = '-';
-     }
+      newtmp(d, &tmp, left, (right->len - index));
+      index2 = base_index(right);
+      while (index2 != 0)
+	{
+	  result = infnb_add_p(d, result, result, &tmp);
+	  right->data[index] = right->data[index] - 1;
+	  index2 = index2 - 1;
+      	}
+      index = index - 1;
+    }
+  infnb_free(&tmp);
   return (result);
 }
 
-char		*multinf(char *s1, char *s2)
+void	infnb_cpy(t_eval_data *d, t_infnb *newnb, t_infnb *src)
 {
-  t_add_data	data;
-  int		index;
-  char		*s2prime;
+  int	index;
 
-  if ((s2prime = malloc(my_strlen(s2))) == NULL)
-    return (NULL);
-  if ((s1[0] == 48) && (s1[1] == 0))
-    return (s1);
-  if ((s2[0] == 48) && (s2[1] == 0))
-    return (s2);
+  newnb->isneg = src->isneg;
   index = 0;
-  while(s2[index])
+  while (src->len - index > srcoffset) //tant que "merdeaulolilol(index->)123"
     {
-      s2prime[index] = s2[index];
+      newnb->data[newnb->len - 1 - index] = src->data[len - 1 index];
       index = index + 1;
     }
-  index = 0;
-  fill_add_data(&s1, &s2prime, &data);
-  if (data.len1 < data.len2)
+  newnb->offset = newnb->len - index;
+}
+
+t_infnb	*multinf(t_eval_data *d, t_infnb *result, t_infnb *left, t_infnb *right)
+{
+  if ((char_index(left->data[0], d->base) == 48) && (left->data[1] == 0))
     {
-      fill_add_data(&s2prime, &s1, &data);
-      return (do_multinf(s2prime, s1, &data, index));
+      infnb_cpy(d, result, left);      
+      return (result);
     }
-  return (do_multinf(s1, s2prime, &data, index));
+  if ((base_index(right->data[0], d->base) == 0) && (right->data[1] == 0))
+    {
+      infnb_cpy(d, result, right);      
+      return (result);
+    }
+  return (do_multinf(d, result, left, right));
 }

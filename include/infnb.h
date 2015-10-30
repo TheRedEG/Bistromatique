@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 26 14:32:22 2015 denuit mathieu
-** Last update Fri Oct 30 00:56:20 2015 denuit mathieu
+** Last update Fri Oct 30 15:52:21 2015 Nicolas Gautherin
 */
 
 #ifndef INFNB_H_
@@ -27,13 +27,9 @@ typedef int (*t_infop)(t_eval_data *d, t_infnb *n1, t_infnb *n2, t_infnb *n3);
 int	char_index(char c, const char *str);
 int	infnb_nbrlen(const char *str, const char *base);
 int	infnb_op_result_size(int op, t_infnb *left, t_infnb *right);
-t_infnb	*infnb_max(t_infnb *a, t_infnb *b);
 int	infnb_new(t_infnb *nb, int size);
-void	infnb_move(t_infnb *dest, t_infnb *src);
-void	infnb_negate(t_infnb *nb);
 int	infnb_iszero(t_infnb *nb, const char *base);
 int	infnb_swap_biggest(t_infnb *left, t_infnb *right);
-void	infnb_print(t_eval_data *data, t_infnb *nb);
 int	infnb_operation(int op, t_eval_data *data, t_infnb *l, t_infnb *r);
 int	infnb_add(t_eval_data *d, t_infnb *res, t_infnb *left, t_infnb *right);
 int	infnb_sub(t_eval_data *d, t_infnb *res, t_infnb *left, t_infnb *right);
@@ -45,6 +41,11 @@ int	infnb_sub_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_mul_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_div_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_mod_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
+int     infnb_is_biggest(t_eval_data *d, t_infnb *left, t_infnb *right);
 void	infnb_free(t_infnb *nb);
+void	infnb_move(t_infnb *dest, t_infnb *src);
+void	infnb_negate(t_infnb *nb);
+void	infnb_print(t_eval_data *data, t_infnb *nb);
+t_infnb	*infnb_max(t_infnb *a, t_infnb *b);
 
 #endif /* !INFNB_H_ */

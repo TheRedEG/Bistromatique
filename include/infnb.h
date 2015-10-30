@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 26 14:32:22 2015 denuit mathieu
-** Last update Fri Oct 30 00:24:19 2015 denuit mathieu
+** Last update Fri Oct 30 00:56:20 2015 denuit mathieu
 */
 
 #ifndef INFNB_H_
@@ -34,7 +34,7 @@ void	infnb_negate(t_infnb *nb);
 int	infnb_iszero(t_infnb *nb, const char *base);
 int	infnb_swap_biggest(t_infnb *left, t_infnb *right);
 void	infnb_print(t_eval_data *data, t_infnb *nb);
-int	infnb_operation(t_eval_data *data, t_infnb *left, t_infnb *right);
+int	infnb_operation(int op, t_eval_data *data, t_infnb *l, t_infnb *r);
 int	infnb_add(t_eval_data *d, t_infnb *res, t_infnb *left, t_infnb *right);
 int	infnb_sub(t_eval_data *d, t_infnb *res, t_infnb *left, t_infnb *right);
 int	infnb_mul(t_eval_data *d, t_infnb *res, t_infnb *left, t_infnb *right);

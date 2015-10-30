@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Tue Oct 27 18:50:32 2015 denuit mathieu
-** Last update Fri Oct 30 00:35:41 2015 denuit mathieu
+** Last update Fri Oct 30 13:26:47 2015 denuit mathieu
 */
 
 #include "infnb.h"
@@ -77,6 +77,7 @@ int	infnb_new(t_infnb *nb, int size)
   nb->len = size;
   nb->offset = 0;
   nb->allocated = 1;
+  nb->is_neg = 0;
   return (E_NO_ERR);
 }
 
@@ -122,23 +123,24 @@ int	infnb_swap_biggest(t_infnb *left, t_infnb *right)
   return (0);
 }
 
-int		infnb_operation(t_eval_data *d, t_infnb *left, t_infnb *right)
+int		infnb_operation(int op, t_eval_data *d, t_infnb *l, t_infnb *r)
 {
   t_infnb	result;
   int		size;
   int		err;
   t_infop	func_op;
 
-  size = infnb_op_result_size(d->token.type, left, right);
+  result.data = 0;
+  size = infnb_op_result_size(op, l, r);
   if ((err = infnb_new(&result, size)) != E_NO_ERR)
     return (err);
-  func_op = g_inf_ops[d->token.type];
-  err = func_op(d, &result, left, right);
+  func_op = g_inf_ops[op];
+  err = func_op(d, &result, l, r);
   if (err != E_NO_ERR)
     return (eval_error_free(err, &result));
-  infnb_free(left);
-  infnb_free(right);
-  infnb_move(left, &result);
+  infnb_free(l);
+  infnb_free(r);
+  infnb_move(l, &result);
   return (E_NO_ERR);
 }
 
@@ -174,5 +176,6 @@ void	infnb_free(t_infnb *nb)
   nb->data = 0;
   nb->len = 0;
   nb->offset = 0;
+  nb->allocated = 0;
 }
 

@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Thu Oct 29 21:41:42 2015 denuit mathieu
+** Last update Fri Oct 30 00:51:17 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -36,6 +36,7 @@ void	show_usage(char *argv0)
 int	main(int argc, char **argv)
 {
   int	size;
+  int	err;
 
   if (argc != 4)
   {
@@ -58,6 +59,8 @@ int	main(int argc, char **argv)
     my_putstr("Size incorrect.\n");
     return (1);
   }
-  return (eval_expr(argv[1], argv[2], size));
+  err = eval_expr(argv[1], argv[2], size);
+  printf("Returned error %d\n", err);
+  return (-err);
 }
 

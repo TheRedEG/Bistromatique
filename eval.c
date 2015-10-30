@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Wed Oct 21 14:16:34 2015 denuit mathieu
-** Last update Fri Oct 30 00:28:40 2015 denuit mathieu
+** Last update Fri Oct 30 01:17:40 2015 denuit mathieu
 */
 
 #include "my.h"
@@ -66,6 +66,7 @@ int		eval_expr(char *base, char *ops, int size)
     free(in_buf);
     return (err);
   }
+  data.in_buf = in_buf;
   if ((err = token_next(&data)) != E_NO_ERR)
   {
     free(in_buf);
@@ -73,6 +74,7 @@ int		eval_expr(char *base, char *ops, int size)
   }
   if ((err = e_expression(&data, &nb_out, 0)) == E_NO_ERR)
     infnb_print(&data, &nb_out);
+  //printf("Stopped at '%s'\n", data.in_buf);
   infnb_free(&nb_out);
   free(in_buf);
   return (err);

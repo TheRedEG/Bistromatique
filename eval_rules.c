@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Thu Oct 29 19:33:21 2015 denuit mathieu
-** Last update Fri Oct 30 00:26:43 2015 denuit mathieu
+** Last update Fri Oct 30 01:11:14 2015 denuit mathieu
 */
 
 #include "eval.h"
@@ -30,6 +30,7 @@ int		e_expression(t_eval_data *data, t_infnb *nb_out, int r_par)
   int		type;
   int		err;
 
+  right.data = 0;
   if ((err = e_factor(data, nb_out)) != E_NO_ERR)
     return (err);
   type = data->token.type;
@@ -39,7 +40,7 @@ int		e_expression(t_eval_data *data, t_infnb *nb_out, int r_par)
       return (eval_error_free(err, &right));
     if ((err = e_factor(data, &right)) != E_NO_ERR)
       return (eval_error_free(err, &right));
-    if ((err = infnb_operation(data, nb_out, &right)) != E_NO_ERR)
+    if ((err = infnb_operation(type, data, nb_out, &right)) != E_NO_ERR)
       return (eval_error_free(err, &right));
     type = data->token.type;
   }
@@ -52,6 +53,7 @@ int		e_factor(t_eval_data *data, t_infnb *nb_out)
   int		type;
   int		err;
 
+  right.data = 0;
   if ((err = e_number(data, nb_out)) != E_NO_ERR)
     return (err);
   type = data->token.type;
@@ -61,7 +63,7 @@ int		e_factor(t_eval_data *data, t_infnb *nb_out)
       return (eval_error_free(err, &right));
     if ((err = e_number(data, &right)) != E_NO_ERR)
       return (eval_error_free(err, &right));
-    if ((err = infnb_operation(data, nb_out, &right)) != E_NO_ERR)
+    if ((err = infnb_operation(type, data, nb_out, &right)) != E_NO_ERR)
       return (eval_error_free(err, &right));
     type = data->token.type;
   }

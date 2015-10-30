@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Fri Oct 30 14:56:35 2015 denuit mathieu
+** Last update Fri Oct 30 15:22:35 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -25,7 +25,7 @@ void	do_subinf_carry(t_infnb *result, t_infnb_it *it)
   while (infnb_it_next_digit(it, &dig_l, &dig_r))
   {
     dig_res = dig_l - dig_r - carry;
-    carry = (dig_res) < 0 ? 1 : 0;
+    carry = (dig_res < 0) ? 1 : 0;
     if (carry)
     {
       dig_res += it->base_len;

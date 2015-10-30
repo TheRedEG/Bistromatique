@@ -1,42 +1,51 @@
 /*
-** addinf.c for addinf.c in 
+** infnb_add_p.c for Bistromathique in /girole_t/
 ** 
 ** Made by Thomas Girolet
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Fri Oct 30 13:45:30 2015 Thomas Girolet
+** Last update Fri Oct 30 15:41:03 2015 denuit mathieu
 */
 
 #include "bistro.h"
 #include "infnb.h"
-#include "addinf.h"
+#include "infnb_it.h"
 
-char	do_addinf_carry(t_infnb *result, t_infnb_it *it)
+void	do_addinf_carry(t_infnb *result, t_infnb_it *it)
 {
+  int	dig_res;
   int	dig_r;
   int	dig_l;
-  
-  if (infnb_it_next_digit(it, &dig_l, &dig_r))
-    {	  
-      int result = dig_r + dig_l;
-      if (result = )
-    }
-}
-
-int	infnb_add_p(t_eval_data *d, t_infnb *result, t_infnb *left, t_infnb *right)
-{
-  t_infnb_it	it;
-  int	s1;
-  int	s2;
+  int	i;
   int	carry;
   
-  intnb_it_init(&it, d, left, right);
-  s1 = left->len - 1;
-  s2 = right->len - 1;
   carry = 0;
-  while(s1 >= 0)
-    {
-      result->data[] = do_addinf_carry(result , &it);
-    }
+  i = result->len - 1;
+  while (infnb_it_next_digit(it, &dig_l, &dig_r))
+  {
+    dig_res = dig_l + dig_r + carry;
+    carry = (dig_res >= it->base_len) ? 1 : 0;
+    if (carry)
+      dig_res -= it->base_len;
+    result->data[i] = it->base[dig_res];
+    i -= 1;
+  }
+  if (carry)
+  {
+    result->data[i] = it->base[1];
+    i -= 1;
+  }
+  result->offset = i;
+}
+
+int		infnb_add_p(t_eval_data *data, t_infnb *result,
+			     t_infnb *left, t_infnb *right)
+{
+  t_infnb_it	it;
+  
+  infnb_swap_biggest(left, right);
+  infnb_it_init(&it, data, left, right);
+  do_addinf_carry(result, &it);
+  return (E_NO_ERR);
 }

@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Thu Oct 29 23:50:06 2015 denuit mathieu
-** Last update Fri Oct 30 14:39:33 2015 denuit mathieu
+** Last update Fri Oct 30 15:24:18 2015 denuit mathieu
 */
 
 #include "eval.h"
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int	infnb_add_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r)
+/*int	infnb_add_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r)
 {
   char	buf_r[256];
   char	buf_l[256];
@@ -30,7 +30,7 @@ int	infnb_add_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r)
   res->offset = 0;
   res->allocated = 0;
   return (E_NO_ERR);
-}
+}*/
 
 /*int	infnb_sub_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r)
 {

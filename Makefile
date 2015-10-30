@@ -5,7 +5,7 @@
 ## Login   <denuit_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:26:08 2015 denuit mathieu
-## Last update Fri Oct 30 14:43:15 2015 denuit mathieu
+## Last update Fri Oct 30 15:24:34 2015 denuit mathieu
 ##
 
 CC	= gcc
@@ -28,6 +28,7 @@ SRCS	= main.c \
 	  infnb_ops.c \
 	  infnb_it.c \
 	  infnb_p.c \
+	  infnb_add_p.c \
 	  infnb_sub_p.c
 
 OBJS	= $(SRCS:.c=.o)

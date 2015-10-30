@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Thu Oct 29 16:22:41 2015 Thomas Girolet
+** Last update Fri Oct 30 13:18:10 2015 Thomas Girolet
 */
 
 #include "bistro.h"
@@ -35,7 +35,7 @@ char	do_addinf_carry(t_infnb *result, int *s1c, int *s2c, int *carry)
   return (res);
 }
 
-int	infnb_add_p(t_infnb *result, t_infnb *left, t_infnb *right)
+int	infnb_add_p(t_eval_data *d, t_infnb *result, t_infnb *left, t_infnb *right)
 {
   int	s1;
   int	s2;
@@ -49,4 +49,3 @@ int	infnb_add_p(t_infnb *result, t_infnb *left, t_infnb *right)
       result->data[] = do_addinf_carry(result ,&s1, &s2, &carry);
     }
 }
-

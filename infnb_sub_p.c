@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Fri Oct 30 15:59:50 2015 denuit mathieu
+** Last update Fri Oct 30 21:33:30 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -34,7 +34,7 @@ void	do_subinf_carry(t_infnb *result, t_infnb_it *it)
     i -= 1;
   }
   result->offset = i + 1;
-  infnb_skip_zero(result);
+  infnb_skip_zero(result, it->base);
 }
 
 int		infnb_sub_p(t_eval_data *data, t_infnb *result,
@@ -43,7 +43,7 @@ int		infnb_sub_p(t_eval_data *data, t_infnb *result,
   t_infnb_it	it;
   int		swapped;
   
-  swapped = infnb_swap_biggest(left, right);
+  swapped = infnb_swap_biggest(left, right, data->base);
   infnb_it_init(&it, data, left, right);
   do_subinf_carry(result, &it);
   if (swapped)

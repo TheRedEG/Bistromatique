@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 26 14:32:22 2015 denuit mathieu
-** Last update Fri Oct 30 16:05:34 2015 denuit mathieu
+** Last update Fri Oct 30 21:22:22 2015 denuit mathieu
 */
 
 #ifndef INFNB_H_
@@ -29,7 +29,7 @@ int	infnb_nbrlen(const char *str, const char *base);
 int	infnb_op_result_size(int op, t_infnb *left, t_infnb *right);
 int	infnb_new(t_infnb *nb, int size);
 int	infnb_iszero(t_infnb *nb, const char *base);
-int	infnb_swap_biggest(t_infnb *left, t_infnb *right);
+int	infnb_swap_biggest(t_infnb *left, t_infnb *right, const char *base);
 int	infnb_operation(int op, t_eval_data *data, t_infnb *l, t_infnb *r);
 int	infnb_add(t_eval_data *d, t_infnb *res, t_infnb *left, t_infnb *right);
 int	infnb_sub(t_eval_data *d, t_infnb *res, t_infnb *left, t_infnb *right);
@@ -42,11 +42,12 @@ int	infnb_mul_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_div_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_mod_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int     infnb_is_biggest(t_eval_data *d, t_infnb *left, t_infnb *right);
+int	infnb_nbrcmp(t_infnb *a, t_infnb *b, const char *base);
 void	infnb_free(t_infnb *nb);
 void	infnb_move(t_infnb *dest, t_infnb *src);
 void	infnb_negate(t_infnb *nb);
-void	infnb_skip_zero(t_infnb *nb);
+void	infnb_skip_zero(t_infnb *nb, const char *base);
 void	infnb_print(t_eval_data *data, t_infnb *nb);
-t_infnb	*infnb_max(t_infnb *a, t_infnb *b);
+t_infnb	*infnb_max(t_infnb *a, t_infnb *b, const char *base);
 
 #endif /* !INFNB_H_ */

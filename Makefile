@@ -5,7 +5,7 @@
 ## Login   <denuit_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:26:08 2015 denuit mathieu
-## Last update Fri Oct 30 15:57:25 2015 Nicolas Gautherin
+## Last update Fri Oct 30 16:16:26 2015 denuit mathieu
 ##
 
 CC	= gcc
@@ -29,10 +29,7 @@ SRCS	= main.c \
 	  infnb_it.c \
 	  infnb_p.c \
 	  infnb_add_p.c \
-	  infnb_sub_p.c \
-	  multinf.c \
-	  eucldiv.c \
-	  infnb_is_biggest.c
+	  infnb_sub_p.c
 
 OBJS	= $(SRCS:.c=.o)
 

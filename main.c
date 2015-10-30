@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Fri Oct 30 00:51:17 2015 denuit mathieu
+** Last update Fri Oct 30 21:33:51 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -60,7 +60,6 @@ int	main(int argc, char **argv)
     return (1);
   }
   err = eval_expr(argv[1], argv[2], size);
-  printf("Returned error %d\n", err);
-  return (-err);
+  return (err);
 }
 

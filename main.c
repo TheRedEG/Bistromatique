@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Fri Oct 30 22:42:19 2015 denuit mathieu
+** Last update Fri Oct 30 22:51:12 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -17,7 +17,7 @@ int	check_base(char *base)
   int	i;
   int	x;
   //vérification de base comprise entre 2 et 250
-  if (my_strlen(base) < 2 || mystrlen(base) > 250)
+  if (my_strlen(base) < 2 || my_strlen(base) > 250)
     return (0);
   //détection de caractère identique 
   i = 0;
@@ -39,6 +39,7 @@ int	check_ops(char *ops, char *base)
 {
   int	i;
   int	x;
+  return (1);
   //vérification que les opérateurs ont 5 chars
   if (my_strlen(ops) != 5)
     return (0);

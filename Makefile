@@ -5,7 +5,7 @@
 ## Login   <denuit_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:26:08 2015 denuit mathieu
-## Last update Fri Oct 30 16:16:26 2015 denuit mathieu
+## Last update Sat Oct 31 15:45:46 2015 denuit mathieu
 ##
 
 CC	= gcc
@@ -21,11 +21,13 @@ NAME	= calc
 
 SRCS	= main.c \
 	  token.c \
-	  str_to_ulong.c \
-	  infnb.c \
 	  eval.c \
 	  eval_rules.c \
+	  str_to_ulong.c \
+	  infnb.c \
 	  infnb_ops.c \
+	  infnb_utils.c \
+	  infnb_action.c \
 	  infnb_it.c \
 	  infnb_p.c \
 	  infnb_add_p.c \

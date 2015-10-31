@@ -5,7 +5,11 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
+<<<<<<< HEAD
 ** Last update Sat Oct 31 19:14:53 2015 Thomas Girolet
+=======
+** Last update Sat Oct 31 18:30:57 2015 denuit mathieu
+>>>>>>> f0015279b7266fe649ce85c54e811398f1afcb99
 */
 
 #include "bistro.h"
@@ -104,6 +108,13 @@ int	main(int argc, char **argv)
     return (1);
   }
   err = eval_expr(argv[1], argv[2], size);
+  if (err == E_ERR_SYNTAX)
+    my_putstr("syntax error");
+  else if (err != E_NO_ERR)
+  {
+    my_putstr("Error: ");
+    my_put_nbr(err);
+  }
   return (err);
 }
 

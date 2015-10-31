@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Wed Oct 21 14:16:34 2015 denuit mathieu
-** Last update Fri Oct 30 01:17:40 2015 denuit mathieu
+** Last update Sat Oct 31 16:30:17 2015 denuit mathieu
 */
 
 #include "my.h"
@@ -33,14 +33,14 @@ int	eval_read_buffer(int size, char **buf_out)
   int	len;
   int	total_len;
 
-  *buf_out = malloc(sizeof(char) * size);
+  *buf_out = malloc(sizeof(char) * (size + 1));
   if (!*buf_out)
     return (E_ERR_MALLOC);
   total_len = 0;
   while ((len = read(0, *buf_out + total_len, size)) > 0)
   {
     total_len += len;
-    if (total_len > size)
+    if (total_len >= size)
     {
       (*buf_out)[size] = 0;
       break;
@@ -74,7 +74,6 @@ int		eval_expr(char *base, char *ops, int size)
   }
   if ((err = e_expression(&data, &nb_out, 0)) == E_NO_ERR)
     infnb_print(&data, &nb_out);
-  //printf("Stopped at '%s'\n", data.in_buf);
   infnb_free(&nb_out);
   free(in_buf);
   return (err);

@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 26 14:32:22 2015 denuit mathieu
-** Last update Fri Oct 30 21:22:22 2015 denuit mathieu
+** Last update Sat Oct 31 19:08:12 2015 Nicolas Gautherin
 */
 
 #ifndef INFNB_H_
@@ -41,8 +41,11 @@ int	infnb_sub_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_mul_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_div_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
 int	infnb_mod_p(t_eval_data *d, t_infnb *res, t_infnb *l, t_infnb *r);
-int     infnb_is_biggest(t_eval_data *d, t_infnb *left, t_infnb *right);
+int     infnb_is_biggest(t_eval_data *d, t_infnb *s1, t_infnb *s2);
 int	infnb_nbrcmp(t_infnb *a, t_infnb *b, const char *base);
+int     infnb_mod_p(t_eval_data *d, t_infnb *result, t_infnb *left, t_infnb *right);
+int     infnb_mul_p(t_eval_data *d, t_infnb *result, t_infnb *left, t_infnb *right);
+int	infnb_div_p(t_eval_data *d, t_infnb *result, t_infnb *left, t_infnb *right);
 void	infnb_free(t_infnb *nb);
 void	infnb_move(t_infnb *dest, t_infnb *src);
 void	infnb_negate(t_infnb *nb);

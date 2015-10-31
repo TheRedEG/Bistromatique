@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Sat Oct 31 16:20:18 2015 denuit mathieu
+** Last update Sat Oct 31 18:30:57 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -50,15 +50,28 @@ int	check_ops(char *ops, char *base)
       x = i + 1;
       while (ops[x] != '\0')
 	{
-	  if (ops[i] == base[x])
+	  if (ops[i] == ops[x])
 	    return (0);
 	  x = x + 1;
 	}
       i = i + 1;
     }
+  //détection de caractère de ops présent dans la base
+  i = 0;
+  while (ops[i] != '\0')
+    {
+      x = 0;
+      while (base[x] != '\0')
+	{
+	  if (ops[i] == base[x])
+	    {
+	      return (0);
+	    }
+	  x = x + 1;
+	}
+      i = i + 1;
+    }
   return (1);
-  //détection de caractère présent dans la base
-  
 }
 
 void	show_usage(char *argv0)

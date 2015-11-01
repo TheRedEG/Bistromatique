@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Sat Oct 31 17:51:28 2015 denuit mathieu
+** Last update Sun Nov  1 15:53:37 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -27,9 +27,7 @@ void	do_subinf_carry(t_infnb *result, t_infnb_it *it)
     dig_res = dig_l - dig_r - carry;
     carry = (dig_res < 0) ? 1 : 0;
     if (carry)
-    {
       dig_res += it->base_len;
-    }
     result->data[i] = it->base[dig_res];
     i -= 1;
   }
@@ -51,8 +49,9 @@ int		infnb_sub_p(t_eval_data *data, t_infnb *result,
   }
   else
   {
-    infnb_move(result, left);
-    result->is_neg = 0;
+    result->offset = left->offset + (result->len - left->len);
+    if (result->data != left->data)
+      infnb_copy(result, left);
   }
   if (swapped)
     infnb_negate(result);

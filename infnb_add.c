@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Sat Oct 31 17:51:31 2015 denuit mathieu
+** Last update Sun Nov  1 15:53:39 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -39,6 +39,21 @@ void	do_addinf_carry(t_infnb *result, t_infnb_it *it)
   result->offset = i + 1;
 }
 
+void	infnb_copy(t_infnb *dest, t_infnb *src)
+{
+  int	i;
+  int	j;
+
+  i = dest->len - 1;
+  j = src->len - 1;
+  while (i >= 0 && j >= src->offset)
+  {
+    dest->data[i] = src->data[j];
+    i -= 1;
+    j -= 1;
+  }
+}
+
 int		infnb_add_p(t_eval_data *data, t_infnb *result,
 			     t_infnb *left, t_infnb *right)
 {
@@ -52,8 +67,9 @@ int		infnb_add_p(t_eval_data *data, t_infnb *result,
   }
   else
   {
-    infnb_move(result, left);
-    result->is_neg = 0;
+    result->offset = left->offset + (result->len - left->len);
+    if (result->data != left->data)
+      infnb_copy(result, left);
   }
   return (E_NO_ERR);
 }

@@ -5,22 +5,22 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 28 13:43:50 2015 Nicolas Gautherin
-** Last update Sat Oct 31 18:53:21 2015 Nicolas Gautherin
+** Last update Sun Nov  1 00:10:46 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
 #include "bistro.h"
 
-void	preset_tmp(t_eval_data *d, t_infnb *result, int size)
+void	preset_tmp(t_eval_data *d, t_infnb *tmp, int size)
 {
   int	index;
 
-  index = result->len - 1;
-  result->offset = result->len - size;
-  result->data[result->offset] = d->base[1];
-  while (index >= result->offset)
+  index = tmp->len - 1;
+  tmp->offset = tmp->len - size;
+  tmp->data[tmp->offset] = d->base[1];
+  while (index > tmp->offset)
     {
-      result->data[index] = d->base[0];
+      tmp->data[index] = d->base[0];
       index = index - 1;
     }
 }
@@ -45,12 +45,19 @@ int		infnb_div_p(t_eval_data *d, t_infnb *result,
       infnb_cpy(d, result, left);
       return (0);
     }
-  preset_tmp(d, &tmp, (left->len - right->len));
+  //  preset_tmp(d, &tmp, (left->len - right->len));
   while (infnb_is_biggest(d, left, &tmp) >= 0)
     {
+      my_putstr("  result: ");
+      infnb_print(d, result);
+      my_putstr("  tmp: ");
+      infnb_print(d, &tmp);
       infnb_add_p(d, &tmp, &tmp, right);
       infnb_add_p(d, result, result, &const_nb);
+      my_putchar('\n');
+      my_putchar('\r');
     }
+  my_putstr("\nend\n");
   infnb_free(&tmp);
   return (0);
 }

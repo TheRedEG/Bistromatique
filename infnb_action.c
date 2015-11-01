@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Sat Oct 31 15:36:14 2015 denuit mathieu
-** Last update Sat Oct 31 15:43:03 2015 denuit mathieu
+** Last update Sun Nov  1 11:41:09 2015 denuit mathieu
 */
 
 #include "infnb.h"
@@ -29,9 +29,7 @@ void	infnb_skip_zero(t_infnb *nb, const char *base)
 void	infnb_move(t_infnb *dest, t_infnb *src)
 {
   *dest = *src;
-  src->len = 0;
-  src->data = 0;
-  src->offset = 0;
+  infnb_init(src);
 }
 
 void	infnb_negate(t_infnb *nb)
@@ -47,12 +45,36 @@ int	infnb_swap_biggest(t_infnb *left, t_infnb *right, const char *base)
   t_infnb	tmp;
   t_infnb	*max;
 
+  infnb_init(&tmp);
   max = infnb_max(left, right, base);
   if (max == right)
   {
     infnb_move(&tmp, left);
     infnb_move(left, right);
     infnb_move(right, &tmp);
+    return (1);
+  }
+  return (0);
+}
+
+void	infnb_init(t_infnb *nb)
+{
+  nb->is_neg = 0;
+  nb->len = 0;
+  nb->offset = 0;
+  nb->data = 0;
+  nb->allocated = 0;
+}
+
+int	infnb_reuse(int size, t_infnb *result, t_infnb *nb)
+{
+  if (nb->allocated && nb->len >= size)
+  {
+    result->len = nb->len;
+    result->data = nb->data;
+    result->is_neg = 0;
+    result->allocated = 1;
+    nb->allocated = 0;
     return (1);
   }
   return (0);
@@ -65,12 +87,14 @@ int		infnb_operation(int op, t_eval_data *d, t_infnb *l, t_infnb *r)
   int		err;
   t_infop	func_op;
 
-  result.data = 0;
-  result.is_neg = 0;
-  result.offset = 0;
+  infnb_init(&result);
   size = infnb_op_result_size(op, l, r);
-  if ((err = infnb_new(&result, size)) != E_NO_ERR)
-    return (err);
+  if (!infnb_reuse(size, &result, l) && !infnb_reuse(size, &result, r))
+  {
+    err = infnb_new(&result, size);
+    if (err != E_NO_ERR)
+      return (err);
+  }
   func_op = g_inf_ops[op];
   err = func_op(d, &result, l, r);
   if (err != E_NO_ERR)

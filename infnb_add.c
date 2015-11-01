@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Sun Nov  1 00:14:11 2015 Nicolas Gautherin
+** Last update Sat Oct 31 17:51:31 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -27,7 +27,7 @@ void	do_addinf_carry(t_infnb *result, t_infnb_it *it)
     dig_res = dig_l + dig_r + carry;
     carry = (dig_res >= it->base_len) ? 1 : 0;
     if (carry)
-      dig_res -= it->base_len - 1;
+      dig_res -= it->base_len;
     result->data[i] = it->base[dig_res];
     i -= 1;
   }

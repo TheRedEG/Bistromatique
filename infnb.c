@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Tue Oct 27 18:50:32 2015 denuit mathieu
-** Last update Sat Oct 31 15:40:55 2015 denuit mathieu
+** Last update Sun Nov  1 11:35:13 2015 denuit mathieu
 */
 
 #include "infnb.h"
@@ -29,7 +29,7 @@ int	char_index(char c, const char *str)
 
 int	infnb_new(t_infnb *nb, int size)
 {
-  nb->data = malloc(sizeof(char) * size);
+  nb->data = my_malloc(sizeof(char) * size);
   if (!nb->data)
     return (E_ERR_MALLOC);
   nb->len = size;
@@ -66,11 +66,8 @@ void	infnb_free(t_infnb *nb)
     return ;
   if (nb->allocated)
   {
-    free(nb->data);
+    my_free(nb->data);
   }
-  nb->data = 0;
-  nb->len = 0;
-  nb->offset = 0;
-  nb->allocated = 0;
+  infnb_init(nb);
 }
 

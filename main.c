@@ -5,12 +5,31 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Sun Nov  1 09:52:11 2015 denuit mathieu
+** Last update Sun Nov  1 11:43:29 2015 denuit mathieu
 */
 
 #include "bistro.h"
 #include "my.h"
 #include "str_to_ulong.h"
+
+int g_malloc_count = 0;
+int g_free_count = 0;
+
+void	*my_malloc(int size)
+{
+  void	*ptr;
+  ptr = malloc(size);
+  if (ptr)
+    g_malloc_count++;
+  return (ptr);
+}
+
+void	my_free(void *ptr)
+{
+  free(ptr);
+  if (ptr != NULL)
+    g_free_count++;
+}
 
 int	check_base(char *base)
 {
@@ -113,6 +132,7 @@ int	main(int argc, char **argv)
     my_putstr("Error: ");
     my_put_nbr(err);
   }
+  printf("Mallocs: %d / Frees: %d\n", g_malloc_count, g_free_count);
   return (err);
 }
 

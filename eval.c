@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Wed Oct 21 14:16:34 2015 denuit mathieu
-** Last update Sat Oct 31 16:30:17 2015 denuit mathieu
+** Last update Sun Nov  1 11:25:24 2015 denuit mathieu
 */
 
 #include "my.h"
@@ -33,7 +33,7 @@ int	eval_read_buffer(int size, char **buf_out)
   int	len;
   int	total_len;
 
-  *buf_out = malloc(sizeof(char) * (size + 1));
+  *buf_out = my_malloc(sizeof(char) * (size + 1));
   if (!*buf_out)
     return (E_ERR_MALLOC);
   total_len = 0;
@@ -47,7 +47,10 @@ int	eval_read_buffer(int size, char **buf_out)
     }
   }
   if (total_len < size)
+  {
+    my_free(*buf_out);
     return (E_ERR_READ);
+  }
   return (E_NO_ERR);
 }
 
@@ -58,23 +61,21 @@ int		eval_expr(char *base, char *ops, int size)
   int		err;
   t_infnb	nb_out;
 
+  infnb_init(&nb_out);
   data.base = base;
   data.base_len = my_strlen(data.base);
   data.operators = ops;
   if ((err = eval_read_buffer(size, &in_buf)) != E_NO_ERR)
-  {
-    free(in_buf);
     return (err);
-  }
   data.in_buf = in_buf;
   if ((err = token_next(&data)) != E_NO_ERR)
   {
-    free(in_buf);
+    my_free(in_buf);
     return (err);
   }
   if ((err = e_expression(&data, &nb_out, 0)) == E_NO_ERR)
     infnb_print(&data, &nb_out);
   infnb_free(&nb_out);
-  free(in_buf);
+  my_free(in_buf);
   return (err);
 }

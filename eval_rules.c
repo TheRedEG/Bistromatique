@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Thu Oct 29 19:33:21 2015 denuit mathieu
-** Last update Fri Oct 30 01:11:14 2015 denuit mathieu
+** Last update Sun Nov  1 11:26:00 2015 denuit mathieu
 */
 
 #include "eval.h"
@@ -30,7 +30,7 @@ int		e_expression(t_eval_data *data, t_infnb *nb_out, int r_par)
   int		type;
   int		err;
 
-  right.data = 0;
+  infnb_init(&right);
   if ((err = e_factor(data, nb_out)) != E_NO_ERR)
     return (err);
   type = data->token.type;
@@ -53,7 +53,7 @@ int		e_factor(t_eval_data *data, t_infnb *nb_out)
   int		type;
   int		err;
 
-  right.data = 0;
+  infnb_init(&right);
   if ((err = e_number(data, nb_out)) != E_NO_ERR)
     return (err);
   type = data->token.type;

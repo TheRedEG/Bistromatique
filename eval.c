@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Wed Oct 21 14:16:34 2015 denuit mathieu
-** Last update Sun Nov  1 11:25:24 2015 denuit mathieu
+** Last update Sun Nov  1 13:19:50 2015 denuit mathieu
 */
 
 #include "my.h"
@@ -37,7 +37,7 @@ int	eval_read_buffer(int size, char **buf_out)
   if (!*buf_out)
     return (E_ERR_MALLOC);
   total_len = 0;
-  while ((len = read(0, *buf_out + total_len, size)) > 0)
+  while ((len = read(0, *buf_out + total_len, 1024)) > 0)
   {
     total_len += len;
     if (total_len >= size)

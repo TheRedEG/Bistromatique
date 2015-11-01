@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Wed Oct 21 12:10:23 2015 denuit mathieu
-** Last update Sat Oct 31 18:33:07 2015 denuit mathieu
+** Last update Sun Nov  1 13:27:16 2015 denuit mathieu
 */
 
 #include "my.h"
@@ -55,7 +55,7 @@ int	token_next(t_eval_data *data)
   else if (char_index(*data->in_buf, data->operators) >= 0)
     token_parse_operator(data);
   else
-    return (E_ERR_INVALID_CHAR);
+    return (E_ERR_SYNTAX);
   return (E_NO_ERR);
 }
 

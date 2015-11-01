@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Sun Nov  1 11:43:29 2015 denuit mathieu
+** Last update Sun Nov  1 13:28:29 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -14,6 +14,7 @@
 
 int g_malloc_count = 0;
 int g_free_count = 0;
+int g_reuses_count = 0;
 
 void	*my_malloc(int size)
 {
@@ -132,7 +133,7 @@ int	main(int argc, char **argv)
     my_putstr("Error: ");
     my_put_nbr(err);
   }
-  printf("Mallocs: %d / Frees: %d\n", g_malloc_count, g_free_count);
+  printf("\nMallocs: %d / Frees: %d / Reuses: %d", g_malloc_count, g_free_count, g_reuses_count);
   return (err);
 }
 

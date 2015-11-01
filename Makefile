@@ -5,15 +5,15 @@
 ## Login   <denuit_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:26:08 2015 denuit mathieu
-## Last update Sun Nov  1 09:40:49 2015 denuit mathieu
+## Last update Sun Nov  1 13:20:13 2015 denuit mathieu
 ##
 
 CC	= gcc
 
 RM	= rm -f
 
-CFLAGS	+= -Wall
-CFLAGS	+= -Iinclude -g
+CFLAGS	+= -Wall -Ofast
+CFLAGS	+= -Iinclude
 
 LDFLAGS	= -Llib -lmy
 

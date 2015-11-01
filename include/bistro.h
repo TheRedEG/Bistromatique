@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:04:11 2015 denuit mathieu
-** Last update Fri Oct 30 00:31:42 2015 denuit mathieu
+** Last update Sun Nov  1 13:17:49 2015 denuit mathieu
 */
 
 #include <stdlib.h>
@@ -31,3 +31,5 @@
 
 int	eval_expr(char *base, char *ops, int size);
 int	read(int fd, char *buf, int len);
+void	*my_malloc(int size);
+void	my_free(void *ptr);

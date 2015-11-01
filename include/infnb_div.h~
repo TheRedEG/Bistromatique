@@ -1,0 +1,21 @@
+/*
+** infnb_div.h for Bistromathique in /home/denuit_m/rendu
+** 
+** Made by denuit mathieu
+** Login   <denuit_m@epitech.net>
+** 
+** Started on  Sun Nov  1 19:26:42 2015 denuit mathieu
+** Last update Sun Nov  1 19:29:46 2015 denuit mathieu
+*/
+
+#ifndef INFNB_DIV_H_
+# define INFNB_DIV_H_
+
+#include "infnb.h"
+
+typedef struct	s_div_data
+{
+t_infnb *r;
+}		t_div_data;
+
+#endif /* !INFNB_DIV_H_ */

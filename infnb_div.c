@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 28 13:43:50 2015 Nicolas Gautherin
-** Last update Sun Nov  1 22:11:15 2015 denuit mathieu
+** Last update Sun Nov  1 22:23:54 2015 denuit mathieu
 */
 
 #include "infnb.h"
@@ -58,9 +58,15 @@ int		infnb_div_p(t_eval_data *d, t_infnb *result,
     infnb_add_p(d, &acc, &acc, right);
     infnb_add_p(d, result, result, &const_nb);
   }
-  
-  if (acc.len - acc.offset != left->len - left->offset ||
-      infnb_nbrcmp(&acc, result, d->base) > 0)
+  my_putchar(' ');
+  infnb_print(d, &acc);
+  my_putchar(' ');
+  infnb_print(d, left);
+  my_putchar(' ');
+  infnb_print(d, result);
+  my_putchar('\n');
+  if (acc.len - acc.offset > left->len - left->offset ||
+      infnb_nbrcmp(&acc, left, d->base) > 0)
     infnb_sub_p(d, result, result, &const_nb);
   infnb_free(&acc);
   return (E_NO_ERR);

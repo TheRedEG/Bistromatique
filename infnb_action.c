@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Sat Oct 31 15:36:14 2015 denuit mathieu
-** Last update Sun Nov  1 12:44:05 2015 denuit mathieu
+** Last update Sun Nov  1 22:00:14 2015 denuit mathieu
 */
 
 #include "infnb.h"
@@ -42,18 +42,17 @@ void	infnb_negate(t_infnb *nb)
   }
 }
 
-int	infnb_swap_biggest(t_infnb *left, t_infnb *right, const char *base)
+int	infnb_swap_biggest(t_infnb **left, t_infnb **right, const char *base)
 {
-  t_infnb	tmp;
+  t_infnb	*tmp;
   t_infnb	*max;
 
-  infnb_init(&tmp);
-  max = infnb_max(left, right, base);
-  if (max == right)
+  max = infnb_max(*left, *right, base);
+  if (max == *right)
   {
-    infnb_move(&tmp, left);
-    infnb_move(left, right);
-    infnb_move(right, &tmp);
+    tmp = *left;
+    *left = *right;
+    *right = tmp;
     return (1);
   }
   return (0);

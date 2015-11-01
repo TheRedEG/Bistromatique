@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Sun Nov  1 15:53:39 2015 denuit mathieu
+** Last update Sun Nov  1 22:02:52 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -54,12 +54,21 @@ void	infnb_copy(t_infnb *dest, t_infnb *src)
   }
 }
 
+void	infnb_swap(t_infnb *left, t_infnb *right)
+{
+  t_infnb	tmp;
+
+  tmp = *left;
+  *left = *right;
+  *right = tmp;
+}
+
 int		infnb_add_p(t_eval_data *data, t_infnb *result,
 			     t_infnb *left, t_infnb *right)
 {
   t_infnb_it	it;
 
-  infnb_swap_biggest(left, right, data->base);
+  infnb_swap_biggest(&left, &right, data->base);
   if (!infnb_iszero(right, data->base))
   {
     infnb_it_init(&it, data, left, right);
@@ -68,8 +77,7 @@ int		infnb_add_p(t_eval_data *data, t_infnb *result,
   else
   {
     result->offset = left->offset + (result->len - left->len);
-    if (result->data != left->data)
-      infnb_copy(result, left);
+    infnb_copy(result, left);
   }
   return (E_NO_ERR);
 }

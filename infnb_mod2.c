@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Sat Oct 31 12:55:43 2015 Nicolas Gautherin
-** Last update Sat Oct 31 19:34:58 2015 Nicolas Gautherin
+** Last update Sun Nov  1 22:21:27 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
@@ -27,10 +27,6 @@ int	infnb_mod_p(t_eval_data *d, t_infnb *result,
       return (0);
     }
   preset_tmp(d, &tmp, (left->len - right->len));
-  my_putstr("tmp: ");
-  infnb_print(d, &tmp);
-  my_putchar('A');
-  usleep(300000);
   while (infnb_is_biggest(d, left, &tmp) >= 0)
     {
       infnb_sub_p(d, result, left, &tmp);

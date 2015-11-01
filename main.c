@@ -5,11 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-<<<<<<< HEAD
-** Last update Sat Oct 31 19:14:53 2015 Thomas Girolet
-=======
-** Last update Sat Oct 31 18:30:57 2015 denuit mathieu
->>>>>>> f0015279b7266fe649ce85c54e811398f1afcb99
+** Last update Sun Nov  1 09:52:11 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -20,16 +16,18 @@ int	check_base(char *base)
 {
   int	i;
   int	x;
+  int	len;
   
-  if (my_strlen(base) < 2 || my_strlen(base) > 250)
+  len = my_strlen(base);
+  if (len < 2 || len > 250)
     return (0);
   i = 0;
-  while (base[i] != '\0')
+  while (i < len)
     {
-      x = i + 1;
-      while (base[x] != '\0')
+      x = 0;
+      while (x < len)
 	{
-	  if (base[i] == base[x])
+	  if (x != i && base[x] == base[i])
 	    return (0);
 	  x = x + 1;
 	}
@@ -42,31 +40,31 @@ int	check_ops(char *ops, char *base)
 {
   int	i;
   int	x;
+  int	len;
 
-  if (my_strlen(ops) != 5)
+  len = my_strlen(ops);
+  if (len != 7)
     return (0);
   i = 0;
-  while (ops[i] != '\0')
+  while (i < len)
     {
-      x = i + 1;
-      while (ops[x] != '\0')
+      x = 0;
+      while (x < len)
 	{
-	  if (ops[i] == ops[x])
+	  if (x != i && ops[x] == ops[i])
 	    return (0);
 	  x = x + 1;
 	}
       i = i + 1;
     }
   i = 0;
-  while (ops[i] != '\0')
+  while (i < len)
     {
       x = 0;
       while (base[x] != '\0')
 	{
 	  if (ops[i] == base[x])
-	    {
 	      return (0);
-	    }
 	  x = x + 1;
 	}
       i = i + 1;

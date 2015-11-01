@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Sun Nov  1 22:16:08 2015 Nicolas Gautherin
+** Last update Sun Nov  1 22:08:42 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
@@ -83,13 +83,12 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
       j = char_index(right->data[index], d->base);
       while (j > 0)
 	{
-	  infnb_cpy(d, &tmp2, &tmp);
-	  infnb_add_p(d, result, result, &tmp2);
+	  //	  infnb_cpy(d, &tmp2, &tmp);
+	  infnb_add_p(d, result, result, &tmp);
 	  j = j - 1;
 	}
       index = index - 1;
     }
-  infnb_free(&tmp);
   infnb_mul_free_tmp(&tmp, &tmp2);
   return (0);
 }

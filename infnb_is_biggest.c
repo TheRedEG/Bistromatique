@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Sat Oct 31 17:53:14 2015 Nicolas Gautherin
-** Last update Sat Oct 31 23:57:58 2015 Nicolas Gautherin
+** Last update Sun Nov  1 20:26:07 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
@@ -16,10 +16,6 @@ int	infnb_is_biggest(t_eval_data *d, t_infnb *s1, t_infnb *s2)
 {
   int	index;
 
-  my_putstr("  s1: ");
-  infnb_print(d, s1);
-  my_putstr("  s2: ");
-  infnb_print(d, s2);
   if ((s1->len - s1->offset) != (s2->len - s2->offset))
     return ((s1->len - s1->offset) - (s2->len - s2->offset));
   index = s1->offset;

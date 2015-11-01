@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Sat Oct 31 12:55:43 2015 Nicolas Gautherin
-** Last update Sat Oct 31 19:34:58 2015 Nicolas Gautherin
+** Last update Sun Nov  1 21:25:40 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
@@ -16,27 +16,18 @@ int	infnb_mod_p(t_eval_data *d, t_infnb *result,
 {
   t_infnb       tmp;
 
-  if (infnb_new(&tmp, (left->len - left->offset)) == 2)
-    return (2);
+  if (infnb_new(&tmp, (left->len - left->offset)) == E_ERR_MALLOC)
+    return (E_ERR_MALLOC);
+  infnb_clear(d, &tmp);
   if ((right->offset + 1 == right->len) &&
        (right->data[right->offset] == d->base[0]))
-    return (3);
-  if ((right->offset + 1 == right->len) && (right->data[right->offset] == d->base[1]))
+    return (E_ERR_MOD_BY_ZERO);
+  infnb_cpy(d, result, left);
+  while (infnb_is_biggest(d, result, right) >= 0)
     {
-      infnb_cpy(d, result, left);
-      return (0);
-    }
-  preset_tmp(d, &tmp, (left->len - right->len));
-  my_putstr("tmp: ");
-  infnb_print(d, &tmp);
-  my_putchar('A');
-  usleep(300000);
-  while (infnb_is_biggest(d, left, &tmp) >= 0)
-    {
-      infnb_sub_p(d, result, left, &tmp);
-      infnb_add_p(d, &tmp, &tmp, right);
-    
+      infnb_sub_p(d, &tmp, result, right);
+      infnb_cpy(d, result, &tmp);
     }
   infnb_free(&tmp);
-  return (0);
+  return (E_NO_ERR);
 }

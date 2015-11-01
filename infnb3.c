@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Sun Nov  1 22:16:08 2015 Nicolas Gautherin
+** Last update Sun Nov  1 21:32:07 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
@@ -45,22 +45,6 @@ void	infnb_clear(t_eval_data *d, t_infnb *a)
     }
 }
 
-void	infnb_mul_free_tmp(t_infnb *s1, t_infnb *s2)
-{
-  infnb_free(s1);
-  infnb_free(s2);
-}
-
-/*void	infnb_mulcreate_tmp(t_infnb *tmp, t_infnb *tmp2,
-			     t_infnb *left, t_infnb rght)
-{
-  if (infnb_new(&tmp, (left->len - left->offset) +
-                (right->len - right->offset)) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
-  if (infnb_new(&tmp2, (tmp.len)) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
-}
-*/
 int		do_multinf(t_eval_data *d, t_infnb *result,
 			     t_infnb *left, t_infnb *right)
 {
@@ -68,12 +52,12 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
   int		j;
   t_infnb	tmp;
   t_infnb	tmp2;
-
+ 
   if (infnb_new(&tmp, (left->len - left->offset) +
-                 (right->len - right->offset)) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
-  if (infnb_new(&tmp2, (tmp.len)) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
+                (right->len - right->offset)) == 2)
+    return (2);
+  if (infnb_new(&tmp2, (tmp.len)) == 2)
+    return (2);
   index = right->len - 1;
   result->offset = result->len - (left->len - left->offset);
   infnb_clear(d, result);
@@ -90,7 +74,7 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
       index = index - 1;
     }
   infnb_free(&tmp);
-  infnb_mul_free_tmp(&tmp, &tmp2);
+  infnb_free(&tmp2);
   return (0);
 }
 
@@ -115,16 +99,16 @@ int	infnb_mul_p(t_eval_data *d, t_infnb *result,
        (left->len - left->offset == 1))
     {
       infnb_cpy(d, result, left);      
-      return (E_NO_ERR);
+      return (0);
     }
   if ((char_index(right->data[right->offset], d->base) == 0) &&
        (right->len - right->offset == 1))
     {
       infnb_cpy(d, result, right);      
-      return (E_NO_ERR);
+      return (0);
     }
   result->offset = result->len - (left->len - left->offset);
-  if (do_multinf(d, result, left, right) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
-  return (E_NO_ERR);
+  if (do_multinf(d, result, left, right) == 2)
+    return (2);
+  return (0);
 }

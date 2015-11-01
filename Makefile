@@ -5,7 +5,7 @@
 ## Login   <denuit_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:26:08 2015 denuit mathieu
-## Last update Sun Nov  1 22:07:23 2015 Nicolas Gautherin
+## Last update Sun Nov  1 23:42:00 2015 denuit mathieu
 ##
 
 CC	= gcc
@@ -25,6 +25,7 @@ SRCS	= main.c \
 	  eval_rules.c \
 	  str_to_ulong.c \
 	  infnb.c \
+	  infnb2.c \
 	  infnb_ops.c \
 	  infnb_utils.c \
 	  infnb_action.c \
@@ -32,6 +33,7 @@ SRCS	= main.c \
 	  infnb_add.c \
 	  infnb_sub.c \
 	  infnb_mul.c \
+	  infnb_mul2.c \
 	  infnb_div.c \
 	  infnb_mod.c \
 	  infnb_is_biggest.c

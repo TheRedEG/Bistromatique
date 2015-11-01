@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Sun Nov  1 23:08:21 2015 Nicolas Gautherin
+** Last update Sun Nov  1 23:46:45 2015 denuit mathieu
 */
 
 #include "infnb.h"
@@ -14,7 +14,6 @@
 void	newtmp(t_eval_data *d, t_infnb *tmp, t_infnb *left, int rank)
 {
   int	index;
-  int	i;
 
   tmp->offset = tmp->len - (left->len - left->offset) - rank;
   index = tmp->len - 1;

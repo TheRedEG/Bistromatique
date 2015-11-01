@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Wed Oct 21 14:16:34 2015 denuit mathieu
-** Last update Sun Nov  1 13:19:50 2015 denuit mathieu
+** Last update Sun Nov  1 23:38:51 2015 denuit mathieu
 */
 
 #include "my.h"
@@ -33,7 +33,7 @@ int	eval_read_buffer(int size, char **buf_out)
   int	len;
   int	total_len;
 
-  *buf_out = my_malloc(sizeof(char) * (size + 1));
+  *buf_out = malloc(sizeof(char) * (size + 1));
   if (!*buf_out)
     return (E_ERR_MALLOC);
   total_len = 0;
@@ -48,7 +48,7 @@ int	eval_read_buffer(int size, char **buf_out)
   }
   if (total_len < size)
   {
-    my_free(*buf_out);
+    free(*buf_out);
     return (E_ERR_READ);
   }
   return (E_NO_ERR);
@@ -70,12 +70,12 @@ int		eval_expr(char *base, char *ops, int size)
   data.in_buf = in_buf;
   if ((err = token_next(&data)) != E_NO_ERR)
   {
-    my_free(in_buf);
+    free(in_buf);
     return (err);
   }
   if ((err = e_expression(&data, &nb_out, 0)) == E_NO_ERR)
     infnb_print(&data, &nb_out);
   infnb_free(&nb_out);
-  my_free(in_buf);
+  free(in_buf);
   return (err);
 }

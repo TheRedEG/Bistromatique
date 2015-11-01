@@ -5,32 +5,12 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Sun Nov  1 22:03:04 2015 denuit mathieu
+** Last update Sun Nov  1 23:38:03 2015 denuit mathieu
 */
 
 #include "bistro.h"
 #include "my.h"
 #include "str_to_ulong.h"
-
-int g_malloc_count = 0;
-int g_free_count = 0;
-int g_reuses_count = 0;
-
-void	*my_malloc(int size)
-{
-  void	*ptr;
-  ptr = malloc(size);
-  if (ptr)
-    g_malloc_count++;
-  return (ptr);
-}
-
-void	my_free(void *ptr)
-{
-  free(ptr);
-  if (ptr != NULL)
-    g_free_count++;
-}
 
 int	check_base(char *base)
 {
@@ -77,6 +57,14 @@ int	check_ops(char *ops, char *base)
 	}
       i = i + 1;
     }
+  return check_ops2(ops, base, len);
+}
+
+int	check_ops2(char *ops, char *base, int len)
+{
+  int	i;
+  int	x;
+
   i = 0;
   while (i < len)
     {
@@ -92,11 +80,10 @@ int	check_ops(char *ops, char *base)
   return (1);
 }
 
-void	show_usage(char *argv0)
+int	show_error()
 {
-  my_putstr("Usage: ");
-  my_putstr(argv0);
-  my_putstr(" base ops\"()+-*/%\" exp_len\n");
+  my_putstr(ERROR_MSG);
+  return (1);
 }
 
 int	main(int argc, char **argv)
@@ -105,35 +92,19 @@ int	main(int argc, char **argv)
   int	err;
 
   if (argc != 4)
-  {
-    show_usage(argv[0]);
-    return (1);
-  }
+    return (show_error());
   if (!check_base(argv[1]))
-  {
-    my_putstr("Base incorrect.\n");
-    return (1);
-  }
+    return (show_error());
   if (!check_ops(argv[2], argv[1]))
-  {
-    my_putstr("Operators incorrect.\n");
-    return (1);
-  }
+    return (show_error());
   size = str_to_ulong(argv[3]);
   if (size <= 0)
-  {
-    my_putstr("Size incorrect.\n");
-    return (1);
-  }
+    return (show_error());
   err = eval_expr(argv[1], argv[2], size);
   if (err == E_ERR_SYNTAX)
-    my_putstr("syntax error");
+    my_putstr(SYNTAXE_ERROR_MSG);
   else if (err != E_NO_ERR)
-  {
-    my_putstr("Error: ");
-    my_put_nbr(err);
-  }
-//  printf("\nMallocs: %d / Frees: %d / Reuses: %d", g_malloc_count, g_free_count, g_reuses_count);
+    my_putstr(ERROR_MSG);
   return (err);
 }
 

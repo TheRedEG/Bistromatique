@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 26 14:32:22 2015 denuit mathieu
-** Last update Sun Nov  1 22:00:57 2015 denuit mathieu
+** Last update Sun Nov  1 23:43:04 2015 denuit mathieu
 */
 
 #ifndef INFNB_H_
@@ -51,5 +51,8 @@ void	infnb_print(t_eval_data *data, t_infnb *nb);
 void	preset_tmp(t_eval_data *d, t_infnb *result, int size);
 void	infnb_cpy(t_eval_data *d, t_infnb *newnb, t_infnb *src);
 t_infnb	*infnb_max(t_infnb *a, t_infnb *b, const char *base);
+void	infnb_init(t_infnb *nb);
+int	infnb_reuse(int size, t_infnb *result, t_infnb *nb);
+void	infnb_copy(t_infnb *a, t_infnb *b);
 
 #endif /* !INFNB_H_ */

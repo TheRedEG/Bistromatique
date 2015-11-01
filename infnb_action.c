@@ -5,14 +5,12 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Sat Oct 31 15:36:14 2015 denuit mathieu
-** Last update Sun Nov  1 22:00:14 2015 denuit mathieu
+** Last update Sun Nov  1 23:40:22 2015 denuit mathieu
 */
 
 #include "infnb.h"
 #include "bistro.h"
 #include "eval.h"
-
-extern int g_reuses_count;
 
 static const t_infop	g_inf_ops[] = {0, 0, infnb_add, infnb_sub, infnb_mul,
 				        infnb_div, infnb_mod};
@@ -53,30 +51,6 @@ int	infnb_swap_biggest(t_infnb **left, t_infnb **right, const char *base)
     tmp = *left;
     *left = *right;
     *right = tmp;
-    return (1);
-  }
-  return (0);
-}
-
-void	infnb_init(t_infnb *nb)
-{
-  nb->is_neg = 0;
-  nb->len = 0;
-  nb->offset = 0;
-  nb->data = 0;
-  nb->allocated = 0;
-}
-
-int	infnb_reuse(int size, t_infnb *result, t_infnb *nb)
-{
-  if (nb->allocated && nb->len >= size)
-  {
-    result->len = nb->len;
-    result->data = nb->data;
-    result->is_neg = 0;
-    result->allocated = 1;
-    nb->allocated = 0;
-    g_reuses_count++;
     return (1);
   }
   return (0);

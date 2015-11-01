@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Sun Nov  1 22:16:08 2015 Nicolas Gautherin
+** Last update Sun Nov  1 23:08:21 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
@@ -45,22 +45,6 @@ void	infnb_clear(t_eval_data *d, t_infnb *a)
     }
 }
 
-void	infnb_mul_free_tmp(t_infnb *s1, t_infnb *s2)
-{
-  infnb_free(s1);
-  infnb_free(s2);
-}
-
-/*void	infnb_mulcreate_tmp(t_infnb *tmp, t_infnb *tmp2,
-			     t_infnb *left, t_infnb rght)
-{
-  if (infnb_new(&tmp, (left->len - left->offset) +
-                (right->len - right->offset)) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
-  if (infnb_new(&tmp2, (tmp.len)) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
-}
-*/
 int		do_multinf(t_eval_data *d, t_infnb *result,
 			     t_infnb *left, t_infnb *right)
 {
@@ -69,10 +53,7 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
   t_infnb	tmp;
   t_infnb	tmp2;
 
-  if (infnb_new(&tmp, (left->len - left->offset) +
-                 (right->len - right->offset)) == E_ERR_MALLOC)
-    return (E_ERR_MALLOC);
-  if (infnb_new(&tmp2, (tmp.len)) == E_ERR_MALLOC)
+  if (infnb_mulcreate_tmp(&tmp, &tmp2, left, right) == E_ERR_MALLOC)
     return (E_ERR_MALLOC);
   index = right->len - 1;
   result->offset = result->len - (left->len - left->offset);
@@ -89,9 +70,8 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
 	}
       index = index - 1;
     }
-  infnb_free(&tmp);
   infnb_mul_free_tmp(&tmp, &tmp2);
-  return (0);
+  return (E_NO_ERR);
 }
 
 void	infnb_cpy(t_eval_data *d, t_infnb *new, t_infnb *src)

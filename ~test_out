@@ -1,0 +1,20 @@
+left: [data: 123  len: 3  offset: 0]
+right:[data: 5  len: 1  offset: 0]
+
+###########################
+  tmp->offset: 1  tmp->len: 4
+left: 123  rank1: 0  rank2: 3   tmp->data[index1(3)]=3   tmp->data[index1(2)]=2   tmp->data[index1(1)]=1
+tmp1: 123  index: 0   j:(right->data[index]=5) = 5
+j: 5   tmpA: 123   tmp2A: 123  offsetA: 1   result->offsetA: 1
+result->offsetB: 1  offsetB: 1   tmpB: 123   resultB: 012   tmpC: 123
+j: 4   tmpA: 123   tmp2A: 123  offsetA: 1   result->offsetA: 1
+result->offsetB: 1  offsetB: 1   tmpB: 123   resultB: 135   tmpC: 123
+j: 3   tmpA: 123   tmp2A: 123  offsetA: 1   result->offsetA: 1
+result->offsetB: 1  offsetB: 1   tmpB: 123   resultB: 258   tmpC: 123
+j: 2   tmpA: 123   tmp2A: 123  offsetA: 1   result->offsetA: 1
+result->offsetB: 1  offsetB: 1   tmpB: 123   resultB: 381   tmpC: 123
+j: 1   tmpA: 123   tmp2A: 123  offsetA: 1   result->offsetA: 1
+result->offsetB: 1  offsetB: 1   tmpB: 123   resultB: 504   tmpC: 123
+
+504
+Mallocs: 4 / Frees: 4 / Reuses: 0

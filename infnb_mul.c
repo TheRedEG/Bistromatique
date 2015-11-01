@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 21 15:43:19 2015 Nicolas Gautherin
-** Last update Sun Nov  1 17:02:10 2015 Nicolas Gautherin
+** Last update Sun Nov  1 18:01:24 2015 Nicolas Gautherin
 */
 
 #include "infnb.h"
@@ -14,14 +14,11 @@
 void	newtmp(t_eval_data *d, t_infnb *tmp, t_infnb *left, int rank)
 {
   int	index;
+  int	i;
 
-  my_putstr("\nleft->offset: ");
-  my_put_nbr(left->offset);
-  my_putstr("  left->len: ");
-  my_put_nbr(left->len);
-  
-  tmp->offset = tmp->len - (left->len - left->offset) - 1;
-  
+    
+  tmp->offset = tmp->len - (left->len - left->offset);
+
   my_putstr("  tmp->offset: ");
   my_put_nbr(tmp->offset);
   my_putstr("  tmp->len: ");
@@ -42,16 +39,15 @@ void	newtmp(t_eval_data *d, t_infnb *tmp, t_infnb *left, int rank)
       index = index - 1;
       rank = rank - 1;
     }
-
-  rank = left->len - 1;
+  rank = left->len;
   my_putstr("  rank2: ");
   my_put_nbr(rank);
-  while (rank >= left->offset)
+  while (rank > left->offset)
     {
       my_putstr("   tmp->data[index1(");
       my_put_nbr(index);
       my_putstr(")]=");
-      tmp->data[index] = left->data[rank];
+      tmp->data[index] = left->data[rank - 1];
       my_putchar(tmp->data[index]);
       rank = rank - 1;
       index = index - 1;
@@ -72,14 +68,12 @@ void	m(t_infnb *a)
     }
 }
 
-
 int		do_multinf(t_eval_data *d, t_infnb *result,
 			     t_infnb *left, t_infnb *right)
 {
   int		index;
   int		j;
   t_infnb	tmp;
-  t_infnb	result2;
   t_infnb	tmp2;
  
   if (infnb_new(&tmp, (left->len - left->offset) +
@@ -87,13 +81,8 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
     return (2);
   if (infnb_new(&tmp2, (tmp.len)) == 2)
       return (2);
-      if (infnb_new(&result2, (result->len)) == 2)
-    return (2);
   index = right->len - 1;
-  m(result);
-  m(&result2);
   result->offset =result->len - (left->len - left->offset);
-  result2.offset =result2.len - (left->len - left->offset);
   while (index >= right->offset)
     {
       my_putstr("\n###########################\n");
@@ -113,24 +102,23 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
 	  my_putstr("   tmpA: ");
 	  infnb_print(d, &tmp);
 	  infnb_cpy(d, &tmp2, &tmp);
-	  my_putstr("   resultA: ");
-	  infnb_print(d, result);
-	  my_putstr("   result2A: ");
-	  infnb_print(d, &result2);
 	  my_putstr("   tmp2A: ");
-	  infnb_print(d, &tmp2);
-	  
-	  infnb_add_p(d, &result2, result, &tmp2);
-
-	  infnb_cpy(d, result, &result2);
-	  my_putstr("   tmp2B: ");
-	  infnb_print(d, &tmp2);
+	  infnb_print(d, &tmp2);  
+	  my_putstr("  offsetA: ");
+	  my_put_nbr(tmp2.offset);
+	  my_putstr("   result->offsetA: ");
+	  my_put_nbr(result->offset);
+	  infnb_add_p(d, result, result, &tmp2);
+	  my_putstr("\nresult->offsetB: ");
+	  my_put_nbr(result->offset);
+	  my_putstr("  offsetB: ");
+	  my_put_nbr(tmp2.offset);	  
+	  //	  my_putstr("   tmp2B: ");
+	  //infnb_print(d, &tmp2);
 	  my_putstr("   tmpB: ");
 	  infnb_print(d, &tmp);
 	  my_putstr("   resultB: ");
-	  infnb_print(d, &result);
-	  my_putstr("   result2B: ");
-	  infnb_print(d, &result2);
+	  infnb_print(d, result);
 	  my_putstr("   tmpC: ");
 	  infnb_print(d, &tmp);
 	  j = j - 1;
@@ -140,7 +128,6 @@ int		do_multinf(t_eval_data *d, t_infnb *result,
     }
   infnb_free(&tmp);
   infnb_free(&tmp2);
-  infnb_free(&result2);
   return (0);
 }
 
@@ -157,7 +144,7 @@ void	infnb_cpy(t_eval_data *d, t_infnb *new, t_infnb *src)
     }
   new->offset = new->len - (src->len - src->offset);
 }
-²
+
 int	infnb_mul_p(t_eval_data *d, t_infnb *result,
 		     t_infnb *left, t_infnb *right)
 {

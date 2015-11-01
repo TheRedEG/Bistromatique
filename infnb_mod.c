@@ -5,7 +5,7 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Sat Oct 31 12:55:43 2015 Nicolas Gautherin
-** Last update Sat Oct 31 19:34:58 2015 Nicolas Gautherin
+** Last update Sun Nov  1 18:22:48 2015 denuit mathieu
 */
 
 #include "infnb.h"
@@ -16,7 +16,7 @@ int	infnb_mod_p(t_eval_data *d, t_infnb *result,
 {
   t_infnb       tmp;
 
-  if (infnb_new(&tmp, (left->len - left->offset)) == 2)
+/*  if (infnb_new(&tmp, (left->len - left->offset)) == 2)
     return (2);
   if ((right->offset + 1 == right->len) &&
        (right->data[right->offset] == d->base[0]))
@@ -38,5 +38,5 @@ int	infnb_mod_p(t_eval_data *d, t_infnb *result,
     
     }
   infnb_free(&tmp);
-  return (0);
+  return (0);*/
 }

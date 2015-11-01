@@ -5,7 +5,7 @@
 ** Login   <denuit_m@epitech.net>
 ** 
 ** Started on  Mon Oct 19 16:08:35 2015 denuit mathieu
-** Last update Sun Nov  1 15:57:18 2015 denuit mathieu
+** Last update Sun Nov  1 22:03:04 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -133,7 +133,7 @@ int	main(int argc, char **argv)
     my_putstr("Error: ");
     my_put_nbr(err);
   }
-  printf("\nMallocs: %d / Frees: %d / Reuses: %d", g_malloc_count, g_free_count, g_reuses_count);
+//  printf("\nMallocs: %d / Frees: %d / Reuses: %d", g_malloc_count, g_free_count, g_reuses_count);
   return (err);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <girole_t@epitech.net>
 ** 
 ** Started on  Wed Oct 28 15:21:15 2015 Thomas Girolet
-** Last update Sun Nov  1 15:53:37 2015 denuit mathieu
+** Last update Sun Nov  1 21:58:52 2015 denuit mathieu
 */
 
 #include "bistro.h"
@@ -41,7 +41,7 @@ int		infnb_sub_p(t_eval_data *data, t_infnb *result,
   t_infnb_it	it;
   int		swapped;
   
-  swapped = infnb_swap_biggest(left, right, data->base);
+  swapped = infnb_swap_biggest(&left, &right, data->base);
   if (!infnb_iszero(right, data->base))
   {
     infnb_it_init(&it, data, left, right);

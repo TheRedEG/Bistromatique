@@ -5,59 +5,63 @@
 ** Login   <gauthe_n@epitech.net>
 ** 
 ** Started on  Wed Oct 28 13:43:50 2015 Nicolas Gautherin
-** Last update Sun Nov  1 00:10:46 2015 Nicolas Gautherin
+** Last update Sun Nov  1 22:11:15 2015 denuit mathieu
 */
 
 #include "infnb.h"
 #include "bistro.h"
 
-void	preset_tmp(t_eval_data *d, t_infnb *tmp, int size)
+int	div_return_error(int err, t_infnb *free1)
 {
-  int	index;
+  free(free1);
+  return (err);
+}
 
-  index = tmp->len - 1;
-  tmp->offset = tmp->len - size;
-  tmp->data[tmp->offset] = d->base[1];
-  while (index > tmp->offset)
-    {
-      tmp->data[index] = d->base[0];
-      index = index - 1;
-    }
+void	infnb_setzero(t_infnb *nb, const char *base)
+{
+  int	i;
+
+  i = 0;
+  while (i < nb->len)
+  {
+    nb->data[i] = base[0];
+    i += 1;
+  }
+  nb->offset = nb->len - 1;
+}
+
+void	const_nb_init(t_infnb *nb, int digit, const char *base)
+{
+  nb->allocated = 0;
+  nb->offset = 0;
+  nb->len = 1;
+  nb->data = (char*) (base + digit);
+  nb->is_neg = 0;
 }
 
 int		infnb_div_p(t_eval_data *d, t_infnb *result,
 			     t_infnb *left, t_infnb *right)
-{  
+{
+  t_infnb	acc;
   t_infnb	const_nb;
-  t_infnb	tmp;
+  int		err;
 
-  if (infnb_new(&tmp, (left->len - left->offset)) == 2)
-    return (2);
-  const_nb.allocated = 0;
-  const_nb.len = 1;
-  const_nb.offset = 0;
-  const_nb.data = "1";
-  const_nb.is_neg = 0;
-  if ((right->offset + 1 == right->len) && (right->data[right->offset] == d->base[0]))
-      return (3);
-  if ((right->offset + 1 == right->len) && (right->data[right->offset] == d->base[1]))
-    {
-      infnb_cpy(d, result, left);
-      return (0);
-    }
-  //  preset_tmp(d, &tmp, (left->len - right->len));
-  while (infnb_is_biggest(d, left, &tmp) >= 0)
-    {
-      my_putstr("  result: ");
-      infnb_print(d, result);
-      my_putstr("  tmp: ");
-      infnb_print(d, &tmp);
-      infnb_add_p(d, &tmp, &tmp, right);
-      infnb_add_p(d, result, result, &const_nb);
-      my_putchar('\n');
-      my_putchar('\r');
-    }
-  my_putstr("\nend\n");
-  infnb_free(&tmp);
-  return (0);
+  if (infnb_iszero(right, d->base))
+    return (E_ERR_DIV_BY_ZERO);
+  if ((err = infnb_new(&acc, left->len - left->offset + 1)) != E_NO_ERR)
+    return (div_return_error(err, &acc));
+  infnb_setzero(result, d->base);
+  infnb_setzero(&acc, d->base);
+  const_nb_init(&const_nb, 1, d->base);
+  while (infnb_max(&acc, left, d->base) == left)
+  {
+    infnb_add_p(d, &acc, &acc, right);
+    infnb_add_p(d, result, result, &const_nb);
+  }
+  
+  if (acc.len - acc.offset != left->len - left->offset ||
+      infnb_nbrcmp(&acc, result, d->base) > 0)
+    infnb_sub_p(d, result, result, &const_nb);
+  infnb_free(&acc);
+  return (E_NO_ERR);
 }
